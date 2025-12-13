@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: 'https://08-zustand-kappa-opal.vercel.app/',
     images: [
       {
-        url: '/public/notehub-og-meta.jpg',
+        url: '@/public/notehub-og-meta.jpg',
         alt: 'NoteHub – modern note-taking app',
         width: 1200,
         height: 630,
