@@ -26,6 +26,7 @@ export default function NoteForm() {
 
     if (!title || !content || !tag) {
       toast.error('All field are required.');
+      return;
     }
 
     const newNote: NewNote = {
@@ -69,7 +70,6 @@ export default function NoteForm() {
       </div>
       <div className={css.actions}>
         <Link className={css.cancelButton} href='/notes/filter/all'>Cancel</Link>
-        {/* <button className={css.cancelButton} onCLick={} type="button">Cancel</button> */}
         <button className={css.submitButton} type="submit" disabled={isPending}>
           Create note
         </button>
