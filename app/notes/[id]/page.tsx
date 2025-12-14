@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: MetadataProps): Promise<Metad
       url: `/notes/${id}`,
       images: [
         {
-          url: '/public/notehub-og-meta.jpg',
+          url: '/notehub-og-meta.jpg',
           alt: 'NoteHub – modern note-taking app',
           width: 1200,
           height: 630
