@@ -50,6 +50,7 @@
 }
 
 .cancelButton {
+  text-decoration: none;
   padding: 8px 16px;
   font-size: 16px;
   background-color: #f8f9fa;
