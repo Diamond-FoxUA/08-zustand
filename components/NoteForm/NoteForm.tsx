@@ -32,6 +32,16 @@ export default function NoteForm() {
 
   const handleSubmit = async (formData: FormData) => {
     const values = Object.fromEntries(formData) as NewNote;
+
+    if (!values.title.trim()) {
+      toast.error('Title is required');
+      return;
+    }
+    if (!values.content.trim()) {
+      toast.error('Title is required');
+      return;
+    }
+
     mutate(values);
   };
 
