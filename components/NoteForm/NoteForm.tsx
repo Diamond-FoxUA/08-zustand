@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
-import type { NewNote, NoteTag } from '@/types/note';
+import type { NewNote } from '@/types/note';
 import { createNote } from '@/lib/api';
 import { useNoteDraft } from '@/lib/store/noteStore';
 
