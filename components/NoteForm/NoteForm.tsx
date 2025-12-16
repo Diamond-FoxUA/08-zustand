@@ -2,14 +2,12 @@
 import css from './NoteForm.module.css';
 
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
 import type { NewNote } from '@/types/note';
 import { createNote } from '@/lib/api';
 import { useNoteDraft } from '@/lib/store/noteStore';
-
 
 export default function NoteForm() {
   const queryClient = useQueryClient();
@@ -98,9 +96,13 @@ export default function NoteForm() {
         </select>
       </div>
       <div className={css.actions}>
-        <Link className={css.cancelButton} href="/notes/filter/all">
+        <button
+          className={css.cancelButton}
+          type="button"
+          onClick={() => router.back()}
+        >
           Cancel
-        </Link>
+        </button>
         <button className={css.submitButton} type="submit" disabled={isPending}>
           Create note
         </button>
