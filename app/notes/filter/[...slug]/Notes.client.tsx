@@ -44,10 +44,10 @@ export default function NotesClient({ tag }: Props) {
   const totalPages = data?.totalPages ?? 0;
 
   useEffect(() => {
-    if (isSuccess && data?.notes.length === 0) {
+    if (isSuccess && data?.notes.length === 0 && debouncedQuery.trim().length > 0) {
       toast.error('No notes found for your request.');
     }
-  }, [isSuccess, data]);
+  }, [isSuccess, data?.notes.length, debouncedQuery]);
 
   return (
     <>
