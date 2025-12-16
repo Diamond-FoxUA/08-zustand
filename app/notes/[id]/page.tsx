@@ -5,7 +5,8 @@ import {
 } from '@tanstack/react-query';
 import { Metadata } from 'next';
 import { fetchNotes, fetchNoteById } from '@/lib/api';
-import NotesClient from '../filter/[...slug]/Notes.client';
+// import NotesClient from '../filter/[...slug]/Notes.client';
+import NoteDetailsClient from './NoteDetails.client';
 
 type MetadataProps = {
   params: Promise<{ id: string }>;
@@ -47,7 +48,7 @@ export default async function Notes() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <NotesClient tag="" />
+      <NoteDetailsClient />
     </HydrationBoundary>
   );
 }
