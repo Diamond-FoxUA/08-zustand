@@ -22,15 +22,18 @@ export default function NotesClient({ tag }: Props) {
   const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
 
-  const saveDebouncedQuery = useDebouncedCallback((query: string) => {
+  const updateDebouncedQuery = useDebouncedCallback(() => {
     setDebouncedQuery(query);
   }, 300);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
-    saveDebouncedQuery(event.target.value);
     setCurrentPage(1);
   };
+
+  useEffect(() => {
+    updateDebouncedQuery();
+  }, [query, updateDebouncedQuery]);
 
   const { data, isLoading, isError, isSuccess } = useQuery({
     queryKey: ['notes', tag, debouncedQuery, currentPage],
