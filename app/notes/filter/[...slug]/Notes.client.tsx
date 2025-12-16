@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useState, useEffect } from 'react';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { useDebouncedCallback } from 'use-debounce';
@@ -15,7 +15,7 @@ import Loader from '@/components/Loader/Loader';
 
 type Props = {
   tag: string | null;
-}
+};
 
 export default function NotesClient({ tag }: Props) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,14 +37,19 @@ export default function NotesClient({ tag }: Props) {
 
   const { data, isLoading, isError, isSuccess } = useQuery({
     queryKey: ['notes', tag, debouncedQuery, currentPage],
-    queryFn: () => fetchNotes({ query: debouncedQuery, page: currentPage, tag, }),
+    queryFn: () =>
+      fetchNotes({ query: debouncedQuery, page: currentPage, tag }),
     placeholderData: keepPreviousData,
   });
 
   const totalPages = data?.totalPages ?? 0;
 
   useEffect(() => {
-    if (isSuccess && data?.notes.length === 0 && debouncedQuery.trim().length > 0) {
+    if (
+      isSuccess &&
+      data?.notes.length === 0 &&
+      debouncedQuery.trim().length > 0
+    ) {
       toast.error('No notes found for your request.');
     }
   }, [isSuccess, data?.notes.length, debouncedQuery]);
@@ -53,8 +58,8 @@ export default function NotesClient({ tag }: Props) {
     <>
       <div className={css.app}>
         <header className={css.toolbar}>
-          {<SearchBox searchQuery={query} onChange={handleChange} />}
-          {isSuccess && totalPages > 1 && (
+          <SearchBox searchQuery={query} onChange={handleChange} />
+          {totalPages > 1 && (
             <Pagination
               totalPages={totalPages}
               currentPage={currentPage}
@@ -67,12 +72,10 @@ export default function NotesClient({ tag }: Props) {
             </Link>
           }
         </header>
-        {isError ? (
-          <p>Error</p>
-        ) : (
-          data && data.notes.length > 0 && <NoteList notes={data.notes} />
-        )}
         {isLoading && <Loader />}
+        {isError && <p>Something went wrong. Please try again.</p>}
+        {data && data.notes.length === 0 && <p>No notes found.</p>}
+        {data && data.notes.length > 0 && <NoteList notes={data.notes} />}
       </div>
       <Toaster />
     </>
