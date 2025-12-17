@@ -42,7 +42,7 @@ export default function NoteForm() {
       return;
     }
     if (!values.content.trim()) {
-      toast.error('Title is required');
+      toast.error('Content is required');
       return;
     }
 
